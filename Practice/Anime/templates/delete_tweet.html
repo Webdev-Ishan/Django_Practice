@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Anime talks
+{% endblock %}
+
+{% block content %}
+
+<h1>Are you sure You want to dlete a tweet???</h1>
+<form method="post">
+{% csrf_token %}
+<button type="Submit" class="btn btn-info">Submit</button>
+<a href="{%url 'listTweets' %}">Back</a>
+</form>
+{% endblock %}

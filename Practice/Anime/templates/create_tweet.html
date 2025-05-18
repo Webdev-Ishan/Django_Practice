@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Anime talks
+{% endblock %}
+
+{% block content %}
+
+<h1>Naruto Is The Best Anime | AOT is also good</h1>
+
+<h2>
+    {% if form.instance.pk %}
+    edit
+    {% else  %}
+    create
+    {% endif %}
+    
+    <form  method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="Submit" class="btn btn-info">Submit</button>
+    </form>
+    <a href="{%url 'listTweets' %}">Back</a>
+</h2>
+{% endblock %}

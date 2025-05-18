@@ -13,21 +13,23 @@ def listTweets(request):
     tweets = Tweet.objects.all().order_by("-created_at")
     return render(request,'all_tweets.html',{"tweets":tweets})
 
+
+
 def createTweet(request):
     if request.method == "POST":
-        form = Tweetform(request.POST,request.Files)
-        if  form.is_valid():
-         tweet= form.save(commit=False) 
-         tweet.user=request.user
-         tweet.save()
-     
-
-        return redirect("listTweets")
+        form = Tweetform(request.POST, request.FILES)
+        if form.is_valid():
+            tweet = form.save(commit=False)
+            tweet.user = request.user
+            tweet.save()
+            return redirect("listTweets")
+        else:
+            print(form.errors)  # Debugging
     else:
-    
         form = Tweetform()
 
-    return render(request,"create_tweet.html",{"form":form})    
+    return render(request, "create_tweet.html", {"form": form})
+    
 
 
 def editTweet(request,tweet_id):
